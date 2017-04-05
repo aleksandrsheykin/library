@@ -41,13 +41,13 @@ public class DataManager {
     }
 
     public static void ExternalizableToFile(Set<Book> books) {
-        try(FileOutputStream fos = new FileOutputStream("books1.txt");
+        /*try(FileOutputStream fos = new FileOutputStream("books1.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             for(Book book : books)
                 oos.writeExternal(book);
 
         } catch(IOException ex) {
             ex.printStackTrace();
-        }
+        }*/
     }
 }

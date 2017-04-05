@@ -34,11 +34,11 @@ public class Library {
     }
 
     public void takeBook(String firstname, String lastname, String secondname, final long passportNumber, String title) {
-        Reader[] reader = (Reader[]) readers.stream().filter(()->r.setPassportNumber == passportNumber.toArray()[0]);  //java 8
+        Object[] reader = readers.stream().filter((r)->r.getPassportNumber() == passportNumber).toArray();
 
         Reader tempReader = null;
         if (reader.length != 0) {
-            tempReader = reader[0];
+            tempReader = (Reader) reader[0];
         } else {
             tempReader = new Reader(firstname, secondname, lastname, passportNumber);
             readers.add(tempReader);
@@ -47,20 +47,21 @@ public class Library {
         BookInstance bookInstance = (BookInstance) store.stream().filter((s)->s.getBook().getTitle().equals(title)).toArray()[0];
         if (bookInstance == null) {
             System.out.println("No such book");
+            return;
         }
-        Booking booking = new Booking(bookInstance, reader, new Data(), new Date());
 
+        Booking booking = new Booking(bookInstance, tempReader, new Date(), new Date());
         bookings.add(booking);
         store.remove(bookInstance);
     }
 
     public void returnBook(String firstname, String lastname, String secondname, final long passportNumber, String title) {
         Reader reader = new Reader(firstname, secondname, lastname, passportNumber);
-        Booking booking = bookings.stream().filter((b)->b.getBookInstance().getBook().getTitle().equals(title)
-                                                    && b.getReader().equals(reader)).toArray()[0]);
+        Booking booking = (Booking) bookings.stream().filter((b)->b.getBookInstance().getBook().getTitle().equals(title)
+                                                 && b.getReader().equals(reader)).toArray()[0];
 
         if (booking == null) {
-            System.out.println("no sych book");
+            System.out.println("no such book");
             return;
         }
 

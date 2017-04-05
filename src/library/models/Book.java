@@ -1,9 +1,11 @@
 package library.models;
 
+import java.io.Serializable;
+
 /**
  * Created by admin on 05.04.2017.
  */
-public class Book {
+public class Book implements Serializable{
 
     private String author;
     private String title;
