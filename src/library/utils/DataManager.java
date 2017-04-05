@@ -17,7 +17,9 @@ public class DataManager {
         try(FileOutputStream fos = new FileOutputStream("books.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             for(Book book : books)
-                oos.writeObject(book);
+                book.writeExternal(oos);
+            oos.flush();
+            fos.close();
         } catch(IOException ex) {
             ex.printStackTrace();
         }
@@ -54,8 +56,12 @@ public class DataManager {
 
             Book book = null;
             while((book = (Book) ois.readObject()) != null) {
+                System.out.println("name | " + book.getName());
                 books.add(book);
             }
+
+            System.out.println("name | " + book.toString());
+
         } catch(IOException ex) {
             ex.printStackTrace();
         } catch (ClassNotFoundException e) {

@@ -1,6 +1,6 @@
 package library.models;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -9,15 +9,17 @@ import java.util.UUID;
 /**
  * Created by admin on 05.04.2017.
  */
-public class BookInstance implements Serializable {
+public class BookInstance implements Externalizable {
     private Book book;
     private UUID number;
     private List<Reader> bookHistory;
-    private static long serrialVersion = 2L;
+    private static long serrialVersion = 3L;
+    private String name;
 
     public BookInstance(Book book, UUID number) {
         this.book = book;
         this.number = number;
+        this.name = "Aleksandr";
 
         bookHistory = new ArrayList<>(32);
     }
@@ -56,6 +58,16 @@ public class BookInstance implements Serializable {
 
     public List<Reader> getBookHistory() {
         return bookHistory;
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeUTF(name);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        this.name = in.readUTF();
     }
 }
 

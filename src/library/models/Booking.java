@@ -11,19 +11,21 @@ import java.io.Serializable;
  * Created by admin on 05.04.2017.
  * Бронирование
  */
-public class Booking implements Serializable {
+public class Booking implements Externalizable {
     private BookInstance bookInstance;
     private Reader reader;
     private Date startDate;
     private Date finishDate;
     private Date returnDate;
-    private static long serrialVersion = 2L;
+    private static long serrialVersion = 3L;
+    private String name;
 
     public Booking(BookInstance bookInstance, Reader reader, Date startDate, Date finishDate) {
         this.bookInstance = bookInstance;
         this.reader = reader;
         this.startDate = startDate;
         this.finishDate = finishDate;
+        this.name = "Aleksandr";
     }
 
     @Override
@@ -82,4 +84,13 @@ public class Booking implements Serializable {
         return finishDate;
     }
 
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeUTF(name);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        this.name = in.readUTF();
+    }
 }
