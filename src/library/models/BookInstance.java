@@ -27,13 +27,13 @@ public class BookInstance {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == null)
+        if (obj == null)
             return false;
 
-        if(!(obj instanceof BookInstance))
+        if (!(obj instanceof BookInstance))
             return false;
 
-        if(!this.number.equals(((BookInstance) obj).number))
+        if (!(this.number.equals(((BookInstance) obj).number)))
             return false;
 
         return true;

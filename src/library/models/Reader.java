@@ -23,13 +23,13 @@ public class Reader {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == null)
+        if (obj == null)
             return false;
 
-        if(!(obj instanceof Booking))
+        if(!(obj instanceof Reader))
             return false;
 
-        if(this.passportNumber != ((Reader) obj).passportNumber)
+        if (passportNumber != ((Reader) obj).passportNumber)
             return false;
 
         return true;

@@ -57,8 +57,8 @@ public class Library {
 
     public void returnBook(String firstname, String lastname, String secondname, final long passportNumber, String title) {
         Reader reader = new Reader(firstname, secondname, lastname, passportNumber);
-        Booking booking = (Booking) bookings.stream().filter((b)->b.getBookInstance().getBook().getTitle().equals(title)
-                                                 && b.getReader().equals(reader)).toArray()[0];
+        Booking booking = (Booking) bookings.stream().filter((b)->b.getBookInstance().getBook().getTitle().equals(title) &&
+                                                  b.getReader().equals(reader)).toArray()[0];
 
         if (booking == null) {
             System.out.println("no such book");
@@ -71,16 +71,16 @@ public class Library {
 
     public void showAllData() {
         for (Book book:catalog) {
-            System.out.println(book);
+            System.out.println("book | " + book);
         }
         for (BookInstance bookInstance:store) {
-            System.out.println(bookInstance);
+            System.out.println("bookInstance | " + bookInstance);
         }
         for (Reader reader:readers) {
-            System.out.println(reader);
+            System.out.println("reader | " + reader);
         }
         for (Booking booking:bookings) {
-            System.out.println(booking);
+            System.out.println("booking | " + booking);
         }
     }
 

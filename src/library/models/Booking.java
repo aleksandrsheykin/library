@@ -1,41 +1,58 @@
 package library.models;
 
+import java.io.IOException;
+import java.io.ObjectOutput;
 import java.util.Date;
+import java.io.Externalizable;
+import java.io.ObjectInput;
 
 /**
  * Created by admin on 05.04.2017.
  * Бронирование
  */
-public class Booking {
-    private BookInstance BookInstance;
+public class Booking implements Externalizable {
+    private BookInstance bookInstance;
     private Reader reader;
     private Date startDate;
     private Date finishDate;
     private Date returnDate;
 
-    public Booking(library.models.BookInstance bookInstance, Reader reader, Date startOrder, Date finishDate) {
-        BookInstance = bookInstance;
+    private static long serialVersionUID = 2017L;
+
+    public Booking(BookInstance bookInstance, Reader reader, Date startDate, Date finishDate) {
+        this.bookInstance = bookInstance;
         this.reader = reader;
-        this.startDate = startOrder;
+        this.startDate = startDate;
         this.finishDate = finishDate;
     }
 
     @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeUTF("niksergey");
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        System.out.println(in.readUTF());
+    }
+
+
+    @Override
     public int hashCode() {
-        return BookInstance.hashCode() + reader.hashCode() + startDate.hashCode();
+        return bookInstance.hashCode() + reader.hashCode() + startDate.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == null)
+        if (obj == null)
             return false;
 
         if(!(obj instanceof Booking))
             return false;
 
-        if(!this.BookInstance.equals(((Booking) obj).BookInstance)
+        if (!(bookInstance.equals(((Booking) obj).bookInstance)
                 && reader.equals(((Booking) obj).reader)
-                && startDate.equals(((Booking) obj).startDate))
+                && startDate.equals(((Booking) obj).startDate)))
             return false;
 
         return true;
@@ -44,24 +61,24 @@ public class Booking {
     @Override
     public String toString() {
         return "Booking{" +
-                "BookInstance=" + BookInstance +
+                "bookInstance=" + bookInstance +
                 ", reader=" + reader +
                 ", startDate=" + startDate +
                 ", finishDate=" + finishDate +
-                ", returnOrder=" + returnDate +
+                ", returnDate=" + returnDate +
                 '}';
     }
 
     public Date getReturnDate() {
-        return finishDate;
+        return returnDate;
     }
 
-    public void setReturnDate(Date d) {
-        this.returnDate = d;
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
     }
 
-    public library.models.BookInstance getBookInstance() {
-        return BookInstance;
+    public BookInstance getBookInstance() {
+        return bookInstance;
     }
 
     public Reader getReader() {

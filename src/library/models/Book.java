@@ -22,18 +22,18 @@ public class Book implements Serializable{
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return isbn.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == null)
+        if (obj == null)
             return false;
 
-        if(!(obj instanceof Book))
+        if (!(obj instanceof Book))
             return false;
 
-        if(!this.isbn.equals(((Book) obj).isbn))
+        if (!this.isbn.equals(((Book) obj).isbn))
             return false;
 
         return true;
@@ -41,7 +41,7 @@ public class Book implements Serializable{
 
     @Override
     public String toString() {
-        return super.toString();
+        return author + "@" + title + "@" + year + "@" + isbn;
     }
 
     public String getTitle() {

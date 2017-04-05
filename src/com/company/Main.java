@@ -13,20 +13,20 @@ public class Main {
         for(Book book : DataManager.deserialize())
             library.buyBook(book.getTitle(), book.getAuthor(), book.getYear(), book.getIsbn(), book.getYear());
 
-        Reader jon = new Reader("Jone", "Karlovich", "Konor", 12345);
+/*        Reader jon = new Reader("Jone", "Karlovich", "Konor", 12345);
         Reader sara = new Reader("Sara", "Serheevna", "Konor", 54321);
 
-        /*library.buyBook("Intro to Java", "Pushkin", 3, "123123321sdf", 2017);
+        library.buyBook("Intro to Java", "Pushkin", 3, "123123321sdf", 2017);
         library.buyBook("Oak green lukomorie", "Vasya Pupkin", 5, "1233321231das", 2016);
 
         library.takeBook("Jone", "Karlovich", "Konor", 12345, "Intro to Java");
         library.takeBook("Sara", "Serheevna", "Konor", 54321, "Oak green lukomorie");
-*/
-        library.returnBook("Jone", "Karlovich", "Konor", 12345, "Intro to Java");
 
+        library.returnBook("Jone", "Karlovich", "Konor", 12345, "Intro to Java");
+*/
         library.showAllData();
 
-        DataManager.serializeToFile(library.getCatalog());
+        //DataManager.serializeToFile(library.getCatalog());
     }
 
 }
