@@ -1,8 +1,7 @@
 package library.utils;
 
-import library.models.Book;
-import library.models.BookInstance;
-import library.models.Booking;
+import library.models.*;
+import library.models.Library;
 import library.models.Reader;
 
 import java.io.*;
@@ -48,7 +47,7 @@ public class DataManager {
         }
     }
 
-    public static Set<Book> deserialize() {
+    public static Set<Book> deserializeBook() {
         Set<Book> books = new HashSet<>();
         try(FileInputStream fis = new FileInputStream("books.txt");
             ObjectInputStream ois = new ObjectInputStream(fis)) {
@@ -64,8 +63,10 @@ public class DataManager {
         } finally {
             return books;
         }
+    }
 
-        /*Set<Reader> readers = new HashSet<>();
+    public static Set<Reader> deserializeReader() {
+        Set<Reader> readers = new HashSet<>();
         try(FileInputStream fis = new FileInputStream("readers.txt");
             ObjectInputStream ois = new ObjectInputStream(fis)) {
 
@@ -78,8 +79,44 @@ public class DataManager {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
-            return books;
-        }*/
+            return readers;
+        }
+    }
+
+    public static Set<BookInstance> deserializeBookInstance() {
+        Set<BookInstance> bookInstances = new HashSet<>();
+        try(FileInputStream fis = new FileInputStream("bookInstances.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis)) {
+
+            BookInstance bi = null;
+            while((bi = (BookInstance) ois.readObject()) != null) {
+                bookInstances.add(bi);
+            }
+        } catch(IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            return bookInstances;
+        }
+    }
+
+    public static Set<Booking> deserializeBooking() {
+        Set<Booking> Bookings = new HashSet<>();
+        try(FileInputStream fis = new FileInputStream("bookings.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis)) {
+
+            Booking b = null;
+            while((b = (Booking) ois.readObject()) != null) {
+                Bookings.add(b);
+            }
+        } catch(IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            return Bookings;
+        }
     }
 
     public static void ExternalizableToFile(Set<Book> books) {

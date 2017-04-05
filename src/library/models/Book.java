@@ -11,7 +11,7 @@ public class Book implements Serializable{
     private String title;
     private int year;
     private String isbn;
-    private static long serrialVersion = 21;
+    private static long serrialVersion = 2L;
 
     public Book(String author, String title, int year, String isbn) {
         this.author = author;

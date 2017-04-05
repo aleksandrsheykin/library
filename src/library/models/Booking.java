@@ -16,6 +16,7 @@ public class Booking implements Externalizable {
     private Date startDate;
     private Date finishDate;
     private Date returnDate;
+    private static long serrialVersion = 2L;
 
     private static long serialVersionUID = 2017L;
 
@@ -35,7 +36,6 @@ public class Booking implements Externalizable {
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         System.out.println(in.readUTF());
     }
-
 
     @Override
     public int hashCode() {
@@ -83,5 +83,17 @@ public class Booking implements Externalizable {
 
     public Reader getReader() {
         return reader;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public Date getFinishDate() {
+        return finishDate;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 }

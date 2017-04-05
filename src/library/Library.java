@@ -33,6 +33,21 @@ public class Library {
         }
     }
 
+    public void addReader(String fistname, String secondname, String lastname, long passportNumber) {
+        Reader newReader = new Reader(fistname, secondname, lastname, passportNumber);
+        readers.add(newReader);
+    }
+
+    public void addBookInstance(Book book, UUID number) {
+        BookInstance bi = new BookInstance(book, number);
+        store.add(bi);
+    }
+
+    public void addBooking(BookInstance bookInstance, Reader reader, Date startDate, Date finishDate) {
+        Booking b = new Booking(bookInstance, reader, startDate, finishDate);
+        bookings.add(b);
+    }
+
     public void takeBook(String firstname, String lastname, String secondname, final long passportNumber, String title) {
         Object[] reader = readers.stream().filter((r)->r.getPassportNumber() == passportNumber).toArray();
 

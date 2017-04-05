@@ -1,13 +1,17 @@
 package library.models;
 
+import java.io.Externalizable;
+import java.io.Serializable;
+
 /**
  * Created by admin on 05.04.2017.
  */
-public class Reader {
+public class Reader implements Serializable {
     private String fistname;
     private String secondname;
     private String lastname;
     private long passportNumber;
+    private static long serrialVersion = 2L;
 
     public Reader(String fistname, String secondname, String lastname, long passportNumber) {
         this.fistname = fistname;
@@ -53,4 +57,15 @@ public class Reader {
         this.passportNumber = passportNumber;
     }
 
+    public String getFistname() {
+        return fistname;
+    }
+
+    public String getSecondname() {
+        return secondname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
 }

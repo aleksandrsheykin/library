@@ -1,8 +1,8 @@
 package com.company;
 
-import library.models.Book;
+import com.sun.org.apache.regexp.internal.RE;
+import library.models.*;
 import library.models.Library;
-import library.models.Reader;
 import library.utils.DataManager;
 
 public class Main {
@@ -11,13 +11,22 @@ public class Main {
         Library library = new Library();
         boolean deserializeble, serealiseble, createObjects = false;
 
-        deserializeble = false;
-        createObjects = true;
-        serealiseble = true;
+        deserializeble = true;
+        createObjects = serealiseble = !deserializeble;
+        //serealiseble = false;
 
         if (deserializeble) {
-            for(Book book : DataManager.deserialize())
-                library.buyBook(book.getTitle(), book.getAuthor(), book.getYear(), book.getIsbn(), book.getYear());
+            for(Book book : DataManager.deserializeBook())
+                library.buyBook(book.getTitle(), book.getAuthor(), 1, book.getIsbn(), book.getYear());
+
+            for(Reader reader : DataManager.deserializeReader())
+                library.addReader(reader.getFistname(), reader.getSecondname(), reader.getLastname(), reader.getPassportNumber());
+
+            for(BookInstance bookInstance: DataManager.deserializeBookInstance())
+                library.addBookInstance(bookInstance.getBook(), bookInstance.getNumber());
+
+            for(Booking booking: DataManager.deserializeBooking())
+                library.addBooking(booking.getBookInstance(), booking.getReader(), booking.getStartDate(), booking.getFinishDate());
         }
 
         if (createObjects){
