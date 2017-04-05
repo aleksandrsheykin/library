@@ -5,12 +5,13 @@ import java.io.ObjectOutput;
 import java.util.Date;
 import java.io.Externalizable;
 import java.io.ObjectInput;
+import java.io.Serializable;
 
 /**
  * Created by admin on 05.04.2017.
  * Бронирование
  */
-public class Booking implements Externalizable {
+public class Booking implements Serializable {
     private BookInstance bookInstance;
     private Reader reader;
     private Date startDate;
@@ -18,23 +19,11 @@ public class Booking implements Externalizable {
     private Date returnDate;
     private static long serrialVersion = 2L;
 
-    private static long serialVersionUID = 2017L;
-
     public Booking(BookInstance bookInstance, Reader reader, Date startDate, Date finishDate) {
         this.bookInstance = bookInstance;
         this.reader = reader;
         this.startDate = startDate;
         this.finishDate = finishDate;
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeUTF("niksergey");
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        System.out.println(in.readUTF());
     }
 
     @Override
@@ -93,7 +82,4 @@ public class Booking implements Externalizable {
         return finishDate;
     }
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
 }
