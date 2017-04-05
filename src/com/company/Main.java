@@ -34,7 +34,7 @@ public class Main {
         }
 
         if (serealiseble) {
-            DataManager.serializeToFile(library.getCatalog());
+            DataManager.serializeToFile(library.getCatalog(), library.getReaders(), library.getBookings(), library.getStore());
         }
 
         library.showAllData();

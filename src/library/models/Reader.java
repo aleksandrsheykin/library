@@ -52,4 +52,5 @@ public class Reader {
     public void setPassportNumber(long passportNumber) {
         this.passportNumber = passportNumber;
     }
+
 }

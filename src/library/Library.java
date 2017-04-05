@@ -88,6 +88,18 @@ public class Library {
         return catalog;
     }
 
+    public Set<BookInstance> getStore() {
+        return store;
+    }
+
+    public Set<Reader> getReaders() {
+        return readers;
+    }
+
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
     public void setCatalog(Set<Book> catalog) {
         this.catalog = catalog;
     }
