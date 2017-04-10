@@ -88,7 +88,7 @@ public class Book implements Externalizable {
         out.writeUTF(title);
         out.write(year);
         out.writeUTF(isbn);
-        out.writeUTF(name);
+        out.writeUTF(this.name);
     }
 
     @Override
@@ -98,5 +98,6 @@ public class Book implements Externalizable {
         this.year = in.readInt();
         this.isbn = in.readUTF();
         this.name = in.readUTF();
+        //System.out.println(in.readUTF());
     }
 }

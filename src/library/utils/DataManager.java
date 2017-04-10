@@ -3,8 +3,10 @@ package library.utils;
 import library.models.*;
 import library.models.Library;
 import library.models.Reader;
+import sun.misc.IOUtils;
 
 import java.io.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,6 +19,7 @@ public class DataManager {
         try(FileOutputStream fos = new FileOutputStream("books.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             for(Book book : books)
+                //oos.writeObject(book);
                 book.writeExternal(oos);
             oos.flush();
             fos.close();
@@ -56,6 +59,7 @@ public class DataManager {
 
             Book book = null;
             while((book = (Book) ois.readObject()) != null) {
+            //while(!(book = (Book) ois.readObject()).equals(null)) {
                 System.out.println("name | " + book.getName());
                 books.add(book);
             }
@@ -135,4 +139,28 @@ public class DataManager {
             ex.printStackTrace();
         }*/
     }
+
+    public Set<Book> deserializeOne(String content)
+    {
+        Set<Book> books = new HashSet<>();
+
+        try (InputStream is = new ByteArrayInputStream(content.getBytes());
+             ObjectInputStream ois = new ObjectInputStream(is))         {
+
+
+            Book book = null;
+            while (( book = (Book) ois.readObject()) != null) {
+                books.add(book);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            return books;
+        }
+
+    }
+
+
 }
