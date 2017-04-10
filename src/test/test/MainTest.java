@@ -1,9 +1,8 @@
 package test;
 
+import library.models.*;
 import library.models.Book;
-import library.models.BookInstance;
 import library.models.Library;
-import library.models.Book;
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -16,6 +15,7 @@ import static org.junit.Assert.*;
 public class MainTest {
 
     private static Library library;
+    private static Reader reader;
 
     @Test
     public void byBookTest() {
@@ -50,6 +50,12 @@ public class MainTest {
     @After
     public void clearAll() {
         library = new Library();
+    }
+
+    @Test
+    public void readerTest() {
+        reader = new Reader("Mick", "Sergeevich", "Jagger", 1236548);
+        assertTrue(reader.getFistname() == "Mick");
     }
 
     @BeforeClass

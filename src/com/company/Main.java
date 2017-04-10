@@ -11,7 +11,7 @@ public class Main {
         Library library = new Library();
         boolean deserializeble, serealiseble, createObjects = false;
 
-        deserializeble = false;
+        deserializeble = true;
         createObjects = serealiseble = !deserializeble;
         //serealiseble = false;
 

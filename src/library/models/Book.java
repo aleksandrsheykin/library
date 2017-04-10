@@ -22,6 +22,10 @@ public class Book implements Externalizable {
         this.name = "Aleksandr";
     }
 
+    public Book() {
+        //
+    }
+
     @Override
     public int hashCode() {
         return isbn.hashCode();
@@ -86,18 +90,19 @@ public class Book implements Externalizable {
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeUTF(author);
         out.writeUTF(title);
-        out.write(year);
+        out.writeInt(year);
         out.writeUTF(isbn);
         out.writeUTF(this.name);
     }
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        this.author = in.readUTF();
-        this.title = in.readUTF();
-        this.year = in.readInt();
-        this.isbn = in.readUTF();
-        this.name = in.readUTF();
+        this.author = (String) in.readUTF();
+        this.title = (String) in.readUTF();
+        this.year = (Integer) in.readInt();
+        this.isbn = (String) in.readUTF();
+        this.name = (String) in.readUTF();
         //System.out.println(in.readUTF());
     }
+
 }

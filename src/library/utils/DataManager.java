@@ -57,14 +57,19 @@ public class DataManager {
         try(FileInputStream fis = new FileInputStream("books.txt");
             ObjectInputStream ois = new ObjectInputStream(fis)) {
 
-            Book book = null;
+            /*Book book = null;
             while((book = (Book) ois.readObject()) != null) {
-            //while(!(book = (Book) ois.readObject()).equals(null)) {
                 System.out.println("name | " + book.getName());
                 books.add(book);
-            }
+            }*/
+
+            Book book = new Book();
+            book.readExternal(ois);
+            Book book2 = new Book();
+            book2.readExternal(ois);
 
             System.out.println("name | " + book.toString());
+            System.out.println("name | " + book2.toString());
 
         } catch(IOException ex) {
             ex.printStackTrace();
