@@ -140,27 +140,4 @@ public class DataManager {
         }*/
     }
 
-    public Set<Book> deserializeOne(String content)
-    {
-        Set<Book> books = new HashSet<>();
-
-        try (InputStream is = new ByteArrayInputStream(content.getBytes());
-             ObjectInputStream ois = new ObjectInputStream(is))         {
-
-
-            Book book = null;
-            while (( book = (Book) ois.readObject()) != null) {
-                books.add(book);
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            return books;
-        }
-
-    }
-
-
 }
