@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Books>
+<BookClass>
+<Fields>
+<Field author="java.lang.String">isAccessible=false</Field>
+<Field title="java.lang.String">isAccessible=false</Field>
+<Field year="int">isAccessible=false</Field>
+<Field isbn="java.lang.String">isAccessible=false</Field>
+<Field serrialVersion="long">isAccessible=false</Field>
+<Field name="java.lang.String">isAccessible=false</Field>
+</Fields>
+<Methods>
+<Method forName="java.lang.Class"/>
+<Method forName="java.lang.Class"/>
+<Method toString="java.lang.String"/>
+<Method getProtectionDomain="java.security.ProtectionDomain"/>
+<Method isAssignableFrom="boolean"/>
+<Method isInstance="boolean"/>
+<Method getModifiers="int"/>
+<Method isInterface="boolean"/>
+<Method isArray="boolean"/>
+<Method isPrimitive="boolean"/>
+<Method getSuperclass="java.lang.Class"/>
+<Method getComponentType="java.lang.Class"/>
+<Method getName="java.lang.String"/>
+<Method asSubclass="java.lang.Class"/>
+<Method cast="java.lang.Object"/>
+<Method desiredAssertionStatus="boolean"/>
+<Method getAnnotatedInterfaces="[Ljava.lang.reflect.AnnotatedType;"/>
+<Method getAnnotatedSuperclass="java.lang.reflect.AnnotatedType"/>
+<Method getAnnotation="java.lang.annotation.Annotation"/>
+<Method getAnnotations="[Ljava.lang.annotation.Annotation;"/>
+<Method getAnnotationsByType="[Ljava.lang.annotation.Annotation;"/>
+<Method getCanonicalName="java.lang.String"/>
+<Method getClassLoader="java.lang.ClassLoader"/>
+<Method getClasses="[Ljava.lang.Class;"/>
+<Method getConstructor="java.lang.reflect.Constructor"/>
+<Method getConstructors="[Ljava.lang.reflect.Constructor;"/>
+<Method getDeclaredAnnotation="java.lang.annotation.Annotation"/>
+<Method getDeclaredAnnotations="[Ljava.lang.annotation.Annotation;"/>
+<Method getDeclaredAnnotationsByType="[Ljava.lang.annotation.Annotation;"/>
+<Method getDeclaredClasses="[Ljava.lang.Class;"/>
+<Method getDeclaredConstructor="java.lang.reflect.Constructor"/>
+<Method getDeclaredConstructors="[Ljava.lang.reflect.Constructor;"/>
+<Method getDeclaredField="java.lang.reflect.Field"/>
+<Method getDeclaredFields="[Ljava.lang.reflect.Field;"/>
+<Method getDeclaredMethod="java.lang.reflect.Method"/>
+<Method getDeclaredMethods="[Ljava.lang.reflect.Method;"/>
+<Method getDeclaringClass="java.lang.Class"/>
+<Method getEnclosingClass="java.lang.Class"/>
+<Method getEnclosingConstructor="java.lang.reflect.Constructor"/>
+<Method getEnclosingMethod="java.lang.reflect.Method"/>
+<Method getEnumConstants="[Ljava.lang.Object;"/>
+<Method getField="java.lang.reflect.Field"/>
+<Method getFields="[Ljava.lang.reflect.Field;"/>
+<Method getGenericInterfaces="[Ljava.lang.reflect.Type;"/>
+<Method getGenericSuperclass="java.lang.reflect.Type"/>
+<Method getInterfaces="[Ljava.lang.Class;"/>
+<Method getMethod="java.lang.reflect.Method"/>
+<Method getMethods="[Ljava.lang.reflect.Method;"/>
+<Method getPackage="java.lang.Package"/>
+<Method getResource="java.net.URL"/>
+<Method getResourceAsStream="java.io.InputStream"/>
+<Method getSigners="[Ljava.lang.Object;"/>
+<Method getSimpleName="java.lang.String"/>
+<Method getTypeName="java.lang.String"/>
+<Method getTypeParameters="[Ljava.lang.reflect.TypeVariable;"/>
+<Method isAnnotation="boolean"/>
+<Method isAnnotationPresent="boolean"/>
+<Method isAnonymousClass="boolean"/>
+<Method isEnum="boolean"/>
+<Method isLocalClass="boolean"/>
+<Method isMemberClass="boolean"/>
+<Method isSynthetic="boolean"/>
+<Method newInstance="java.lang.Object"/>
+<Method toGenericString="java.lang.String"/>
+<Method wait="void"/>
+<Method wait="void"/>
+<Method wait="void"/>
+<Method equals="boolean"/>
+<Method hashCode="int"/>
+<Method getClass="java.lang.Class"/>
+<Method notify="void"/>
+<Method notifyAll="void"/>
+</Methods>
+</BookClass>
+<BookElements>
+<Book>
+<Title>Intro to Java</Title>
+<Author>Pushkin</Author>
+<Isbn>123123321sdf</Isbn>
+</Book>
+<Book>
+<Title>Oak green lukomorie</Title>
+<Author>Vasya Pupkin</Author>
+<Isbn>1233321231das</Isbn>
+</Book>
+</BookElements>
+</Books>

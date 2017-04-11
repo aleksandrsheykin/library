@@ -1,6 +1,9 @@
 package library.models;
 
 import java.io.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 
 /**
  * Created by admin on 05.04.2017.
@@ -14,6 +17,33 @@ public class Book implements Externalizable {
     private static long serrialVersion = 3L;
     private String name;
 
+    public void print() {
+        System.out.println(Book.class.getCanonicalName());
+
+        for (Method method:
+             this.getClass().getMethods()) {
+
+            System.out.println(method.getName());
+            System.out.println(method.getReturnType().getName());
+
+            for (Parameter param :method.getParameters()) {
+                System.out.println(param.getName()+" "+param.getType()+" "+param.getName());
+            }
+
+            System.out.println(method.getModifiers());
+        }
+
+        try {
+            for (Field field : Class.forName("library.models.Book").getFields()) {
+                System.out.println(field.getName());
+                System.out.println(field.getType().getName());
+                System.out.println(field.isAccessible());
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Book(String author, String title, int year, String isbn) {
         this.author = author;
         this.title = title;
@@ -22,9 +52,9 @@ public class Book implements Externalizable {
         this.name = "Aleksandr";
     }
 
-    public Book() {
+    /*public Book() {
         //
-    }
+    }*/
 
     @Override
     public int hashCode() {

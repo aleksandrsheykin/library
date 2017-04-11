@@ -11,8 +11,12 @@ public class Main {
         Library library = new Library();
         boolean deserializeble, serealiseble, createObjects = false;
 
-        deserializeble = true;
-        createObjects = serealiseble = !deserializeble;
+        //Book book = new Book("Mick Jagger", "Rock-n-roll", 2017, "23423");
+        //book.print();
+
+        deserializeble = false;
+        createObjects = true;
+        serealiseble = false;
         //serealiseble = false;
 
         if (deserializeble) {
@@ -36,17 +40,19 @@ public class Main {
             library.buyBook("Intro to Java", "Pushkin", 3, "123123321sdf", 2017);
             library.buyBook("Oak green lukomorie", "Vasya Pupkin", 2, "1233321231das", 2016);
 
-            library.takeBook("Jone", "Karlovich", "Konor", 12345, "Intro to Java");
-            library.takeBook("Sara", "Serheevna", "Konor", 54321, "Oak green lukomorie");
+            //library.takeBook("Jone", "Karlovich", "Konor", 12345, "Intro to Java");
+            //library.takeBook("Sara", "Serheevna", "Konor", 54321, "Oak green lukomorie");
 
-            library.returnBook("Jone", "Karlovich", "Konor", 12345, "Intro to Java");
+            //library.returnBook("Jone", "Karlovich", "Konor", 12345, "Intro to Java");
         }
 
         if (serealiseble) {
             DataManager.serializeToFile(library.getCatalog(), library.getReaders(), library.getBookings(), library.getStore());
         }
 
-        library.showAllData();
+        DataManager.serializeClassToFileXml(Book.class, library);
+
+        //library.showAllData();
     }
 
 }
