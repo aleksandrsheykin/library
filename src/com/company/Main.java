@@ -4,6 +4,11 @@ import com.sun.org.apache.regexp.internal.RE;
 import library.models.*;
 import library.models.Library;
 import library.utils.DataManager;
+import proxy.MySet;
+import proxy.ProxyCollection;
+
+import java.lang.reflect.Proxy;
+import java.util.Set;
 
 public class Main {
 
@@ -14,7 +19,14 @@ public class Main {
         //Book book = new Book("Mick Jagger", "Rock-n-roll", 2017, "23423");
         //book.print();
 
-        deserializeble = false;
+        /*ProxyCollection proxyCollection = new ProxyCollection();
+        Set<Book> catalog = (Set<Book>) Proxy.newProxyInstance(
+                MySet.class.getClassLoader(),
+                MySet.class.getInterfaces(),
+                new ProxyCollection());
+        System.out.println("Proxy returned = " + catalog.contains(2));*/
+
+        deserializeble = true;
         createObjects = true;
         serealiseble = false;
         //serealiseble = false;
@@ -50,7 +62,7 @@ public class Main {
             DataManager.serializeToFile(library.getCatalog(), library.getReaders(), library.getBookings(), library.getStore());
         }
 
-        DataManager.serializeClassToFileXml(Book.class, library);
+        //DataManager.serializeClassToFileXml(Book.class, library);
 
         //library.showAllData();
     }

@@ -202,8 +202,9 @@ public class DataManager {
                 bookElementXml.appendChild(bookIsbnXml);
                 bookIsbnXml.appendChild(doc.createTextNode(elementCatalog.getIsbn()));
 
-                //bookElementXml.appendChild(doc.createElement("Year"));
-                //bookElementXml.appendChild(doc.createTextNode((String) elementCatalog.getYear());
+                Element bookYearXml = doc.createElement("Year");
+                bookElementXml.appendChild(bookYearXml);
+                bookYearXml.appendChild(doc.createTextNode(Integer.toString(elementCatalog.getYear())));
             }
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();

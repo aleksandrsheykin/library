@@ -52,9 +52,9 @@ public class Book implements Externalizable {
         this.name = "Aleksandr";
     }
 
-    /*public Book() {
+    public Book() {
         //
-    }*/
+    }
 
     @Override
     public int hashCode() {

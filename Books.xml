@@ -89,11 +89,13 @@
 <Title>Intro to Java</Title>
 <Author>Pushkin</Author>
 <Isbn>123123321sdf</Isbn>
+<Year>2017</Year>
 </Book>
 <Book>
 <Title>Oak green lukomorie</Title>
 <Author>Vasya Pupkin</Author>
 <Isbn>1233321231das</Isbn>
+<Year>2016</Year>
 </Book>
 </BookElements>
 </Books>
