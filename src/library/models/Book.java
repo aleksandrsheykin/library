@@ -14,7 +14,7 @@ public class Book implements Externalizable {
     private String title;
     private int year;
     private String isbn;
-    private static long serrialVersion = 3L;
+    private static long serialVersionUID = 3L;
 
     public void print() {
         System.out.println(Book.class.getCanonicalName());

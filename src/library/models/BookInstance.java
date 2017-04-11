@@ -15,7 +15,7 @@ public class BookInstance implements Externalizable {
     private Book book;
     private UUID number;
     private List<Reader> bookHistory;
-    private static long serrialVersion = 3L;
+    private static long serialVersionUID = 3L;
 
     public BookInstance(Book book, UUID number) {
         this.book = book;
@@ -68,6 +68,7 @@ public class BookInstance implements Externalizable {
         out.writeObject(book);
         out.writeObject(number);
         out.writeObject(bookHistory);
+        out.writeObject("Alex");
     }
 
     @Override
@@ -75,6 +76,7 @@ public class BookInstance implements Externalizable {
         this.book = (Book) in.readObject();
         this.number = (UUID) in.readObject();
         this.bookHistory = (List<Reader>) in.readObject();
+        System.out.println((String) in.readObject());
     }
 }
 

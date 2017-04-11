@@ -17,7 +17,7 @@ public class Booking implements Externalizable {
     private Date startDate;
     private Date finishDate;
     private Date returnDate;
-    private static long serrialVersion = 3L;
+    private static long serialVersionUID = 3L;
     private String name;
 
     public Booking(BookInstance bookInstance, Reader reader, Date startDate, Date finishDate) {

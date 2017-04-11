@@ -10,7 +10,7 @@ public class Reader implements Externalizable {
     private String secondname;
     private String lastname;
     private long passportNumber;
-    private static long serrialVersion = 3L;
+    private static long serialVersionUID = 3L;
 
     public Reader(String fistname, String secondname, String lastname, long passportNumber) {
         this.fistname = fistname;

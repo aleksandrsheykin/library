@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         Library library = new Library();
-        boolean deserializeble, serealiseble, createObjects = false;
+        boolean deserializeble, serealiseble, createObjects, serializeToXml = false;
 
         //Book book = new Book("Mick Jagger", "Rock-n-roll", 2017, "23423");
         //book.print();
@@ -26,9 +26,9 @@ public class Main {
                 new ProxyCollection());
         System.out.println("Proxy returned = " + catalog.contains(2));*/
 
-        deserializeble = true;
-        createObjects = serealiseble = false;
-        //serealiseble = false;
+        deserializeble = false;
+        createObjects = serealiseble = true;
+        serializeToXml = true;
 
         if (deserializeble) {
             for(Book book : DataManager.deserializeBook())
@@ -37,8 +37,8 @@ public class Main {
             for(Reader reader : DataManager.deserializeReader())
                 library.addReader(reader.getFistname(), reader.getSecondname(), reader.getLastname(), reader.getPassportNumber());
 
-            /*for(BookInstance bookInstance: DataManager.deserializeBookInstance())
-                library.addBookInstance(bookInstance.getBook(), bookInstance.getNumber());*/
+            for(BookInstance bookInstance: DataManager.deserializeBookInstance())
+                library.addBookInstance(bookInstance.getBook(), bookInstance.getNumber());
 
             for(Booking booking: DataManager.deserializeBooking())
                 library.addBooking(booking.getBookInstance(), booking.getReader(), booking.getStartDate(), booking.getFinishDate());
@@ -62,7 +62,9 @@ public class Main {
             DataManager.serializeToFile(library.getCatalog(), library.getReaders(), library.getBookings(), library.getStore());
         }
 
-        //DataManager.serializeClassToFileXml(Book.class, library);
+        if (serializeToXml) {
+            DataManager.serializeClassToXml(Book.class, library);
+        }
 
         library.showAllData();
     }

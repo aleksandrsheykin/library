@@ -18,6 +18,7 @@ import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -150,7 +151,7 @@ public class DataManager {
         }
     }
 
-    public static void serializeClassToFileXml(Class c, Library library) {
+    public static void serializeClassToXml(Class c, Library library) {
         try {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -179,12 +180,13 @@ public class DataManager {
 
             Element methods = doc.createElement("Methods");
             book.appendChild(methods);
-            for (Method method: c.getClass().getMethods()) {
+            for (Method method: c.getMethods()) {
                 Element m = doc.createElement("Method");
                 methods.appendChild(m);
                 Attr attr = doc.createAttribute(method.getName());
                 attr.setValue(method.getReturnType().getName());
                 m.setAttributeNode(attr);
+                m.appendChild(doc.createTextNode("parametrs="+ Arrays.toString(method.getParameters())));
             }
 
             Element bookElementsXml = doc.createElement("BookElements");
@@ -194,32 +196,32 @@ public class DataManager {
                 Element bookElementXml = doc.createElement("Book");
                 bookElementsXml.appendChild(bookElementXml);
 
-                Element bookTitleXml = doc.createElement("Title");
-                bookElementXml.appendChild(bookTitleXml);
-                bookTitleXml.appendChild(doc.createTextNode(elementCatalog.getTitle()));
+                String[] fieldsList = new String[] {"title", "author", "isbn", "year"};
 
-                Element bookAuthorXml = doc.createElement("Author");
-                bookElementXml.appendChild(bookAuthorXml);
-                bookAuthorXml.appendChild(doc.createTextNode(elementCatalog.getAuthor()));
-
-                Element bookIsbnXml = doc.createElement("Isbn");
-                bookElementXml.appendChild(bookIsbnXml);
-                bookIsbnXml.appendChild(doc.createTextNode(elementCatalog.getIsbn()));
-
-                Element bookYearXml = doc.createElement("Year");
-                bookElementXml.appendChild(bookYearXml);
-                bookYearXml.appendChild(doc.createTextNode(Integer.toString(elementCatalog.getYear())));
+                for (String fieldName: fieldsList) {
+                    Element bookTitleXml = doc.createElement(fieldName);
+                    try {
+                        Field f = Book.class.getDeclaredField(fieldName);
+                        f.setAccessible(true);
+                        bookElementXml.appendChild(bookTitleXml);
+                        bookTitleXml.appendChild(doc.createTextNode(f.get(elementCatalog).toString()));
+                    } catch (NoSuchFieldException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            //transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(new File("Books.xml"));
             transformer.transform(source, result);
             // Output to console for testing
-            StreamResult consoleResult = new StreamResult(System.out);
-            transformer.transform(source, consoleResult);
+            /*StreamResult consoleResult = new StreamResult(System.out);
+            transformer.transform(source, consoleResult);*/
 
 
         } catch (ParserConfigurationException e) {
