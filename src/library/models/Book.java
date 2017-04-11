@@ -8,7 +8,7 @@ import java.lang.reflect.Parameter;
 /**
  * Created by admin on 05.04.2017.
  */
-public class Book implements Externalizable {
+public class Book implements Serializable{ //Externalizable {
 
     private String author;
     private String title;
@@ -116,7 +116,7 @@ public class Book implements Externalizable {
         return name;
     }
 
-    @Override
+    /*@Override
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeUTF(author);
         out.writeUTF(title);
@@ -133,6 +133,6 @@ public class Book implements Externalizable {
         this.isbn = (String) in.readUTF();
         this.name = (String) in.readUTF();
         //System.out.println(in.readUTF());
-    }
+    }*/
 
 }

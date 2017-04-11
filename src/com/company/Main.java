@@ -27,7 +27,7 @@ public class Main {
         System.out.println("Proxy returned = " + catalog.contains(2));*/
 
         deserializeble = true;
-        createObjects = true;
+        createObjects = false;
         serealiseble = false;
         //serealiseble = false;
 
@@ -35,14 +35,14 @@ public class Main {
             for(Book book : DataManager.deserializeBook())
                 library.buyBook(book.getTitle(), book.getAuthor(), 1, book.getIsbn(), book.getYear());
 
-            for(Reader reader : DataManager.deserializeReader())
+            /*for(Reader reader : DataManager.deserializeReader())
                 library.addReader(reader.getFistname(), reader.getSecondname(), reader.getLastname(), reader.getPassportNumber());
 
             for(BookInstance bookInstance: DataManager.deserializeBookInstance())
                 library.addBookInstance(bookInstance.getBook(), bookInstance.getNumber());
 
             for(Booking booking: DataManager.deserializeBooking())
-                library.addBooking(booking.getBookInstance(), booking.getReader(), booking.getStartDate(), booking.getFinishDate());
+                library.addBooking(booking.getBookInstance(), booking.getReader(), booking.getStartDate(), booking.getFinishDate());*/
         }
 
         if (createObjects){
@@ -64,7 +64,7 @@ public class Main {
 
         //DataManager.serializeClassToFileXml(Book.class, library);
 
-        //library.showAllData();
+        library.showAllData();
     }
 
 }

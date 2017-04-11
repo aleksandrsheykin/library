@@ -31,8 +31,8 @@ public class DataManager {
         try(FileOutputStream fos = new FileOutputStream("books.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             for(Book book : books)
-                //oos.writeObject(book);
-                book.writeExternal(oos);
+                oos.writeObject(book);
+                //book.writeExternal(oos);
             oos.flush();
             fos.close();
         } catch(IOException ex) {
@@ -133,10 +133,14 @@ public class DataManager {
         try(FileInputStream fis = new FileInputStream("bookings.txt");
             ObjectInputStream ois = new ObjectInputStream(fis)) {
 
-            Booking b = null;
+            /*Booking b = null;
             while((b = (Booking) ois.readObject()) != null) {
                 Bookings.add(b);
-            }
+            }*/
+            Booking bookings = new Booking();
+            bookings.readExternal(ois);
+            Booking bookings2 = new Booking();
+            bookings2.readExternal(ois);
         } catch(IOException ex) {
             ex.printStackTrace();
         } catch (ClassNotFoundException e) {

@@ -87,10 +87,23 @@ public class Booking implements Externalizable {
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeUTF(name);
+        out.writeObject(bookInstance);
+        out.writeObject(reader);
+        out.writeObject(startDate);
+        out.writeObject(finishDate);
+        out.writeObject(returnDate);
     }
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         this.name = in.readUTF();
+        this.bookInstance = (BookInstance) in.readObject();
+        this.reader = (Reader) in.readObject();
+        this.startDate = (Date) in.readObject();
+        this.finishDate = (Date) in.readObject();
+        this.returnDate = (Date) in.readObject();
+    }
+
+    public Booking() {
     }
 }
