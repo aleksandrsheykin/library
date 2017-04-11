@@ -25,7 +25,6 @@ public class MainTest {
         assertTrue(library.getCatalog().contains(book));
         Book bookFromCatalog = library.getCatalog().iterator().next();
         assertTrue(book.getTitle().equals(bookFromCatalog.getTitle()));
-        assertTrue(book.getName().equals(bookFromCatalog.getName()));
         assertTrue(book.getAuthor().equals(bookFromCatalog.getAuthor()));
         assertTrue(book.getIsbn().equals(bookFromCatalog.getIsbn()));
         assertTrue(book.getYear() == bookFromCatalog.getYear());
@@ -40,7 +39,6 @@ public class MainTest {
             library.getStore();
             Book bookFromInstance = bi.getBook();
             assertTrue(book.getTitle().equals(bookFromInstance.getTitle()));
-            assertTrue(book.getName().equals(bookFromInstance.getName()));
             assertTrue(book.getAuthor().equals(bookFromInstance.getAuthor()));
             assertTrue(book.getIsbn().equals(bookFromInstance.getIsbn()));
             assertTrue(book.getYear() == bookFromInstance.getYear());

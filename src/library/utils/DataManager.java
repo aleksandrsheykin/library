@@ -31,8 +31,8 @@ public class DataManager {
         try(FileOutputStream fos = new FileOutputStream("books.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             for(Book book : books)
-                oos.writeObject(book);
-                //book.writeExternal(oos);
+                //oos.writeObject(book);
+                book.writeExternal(oos);
             oos.flush();
             fos.close();
         } catch(IOException ex) {
@@ -42,7 +42,7 @@ public class DataManager {
         try(FileOutputStream fos = new FileOutputStream("readers.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             for(Reader reader : readers)
-                oos.writeObject(reader);
+                reader.writeExternal(oos);
         } catch(IOException ex) {
             ex.printStackTrace();
         }
@@ -50,7 +50,8 @@ public class DataManager {
         try(FileOutputStream fos = new FileOutputStream("bookings.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             for(Booking booking : bookings)
-                oos.writeObject(booking);
+                //oos.writeObject(booking);
+                booking.writeExternal(oos);
         } catch(IOException ex) {
             ex.printStackTrace();
         }
@@ -58,7 +59,8 @@ public class DataManager {
         try(FileOutputStream fos = new FileOutputStream("bookInstances.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             for(BookInstance bookInstance : bookInstances)
-                oos.writeObject(bookInstance);
+                //oos.writeObject(bookInstance);
+                bookInstance.writeExternal(oos);
         } catch(IOException ex) {
             ex.printStackTrace();
         }
@@ -69,19 +71,11 @@ public class DataManager {
         try(FileInputStream fis = new FileInputStream("books.txt");
             ObjectInputStream ois = new ObjectInputStream(fis)) {
 
-            Book book = null;
-            while((book = (Book) ois.readObject()) != null) {
-                System.out.println("name | " + book.getName());
-                books.add(book);
+            while (fis.available() > 0) {
+                Book b = new Book();
+                b.readExternal(ois);
+                books.add(b);
             }
-
-            /*Book book = new Book();
-            book.readExternal(ois);
-            Book book2 = new Book();
-            book2.readExternal(ois);
-
-            System.out.println("name | " + book.toString());
-            System.out.println("name | " + book2.toString());*/
 
         } catch(IOException ex) {
             ex.printStackTrace();
@@ -97,10 +91,16 @@ public class DataManager {
         try(FileInputStream fis = new FileInputStream("readers.txt");
             ObjectInputStream ois = new ObjectInputStream(fis)) {
 
-            Reader reader = null;
+            /*Reader reader = null;
             while((reader = (Reader) ois.readObject()) != null) {
                 readers.add(reader);
+            }*/
+            while (fis.available() > 0) {
+                Reader r = new Reader();
+                r.readExternal(ois);
+                readers.add(r);
             }
+
         } catch(IOException ex) {
             ex.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -115,10 +115,12 @@ public class DataManager {
         try(FileInputStream fis = new FileInputStream("bookInstances.txt");
             ObjectInputStream ois = new ObjectInputStream(fis)) {
 
-            BookInstance bi = null;
-            while((bi = (BookInstance) ois.readObject()) != null) {
+            while (fis.available() > 0) {
+                BookInstance bi = new BookInstance();
+                bi.readExternal(ois);
                 bookInstances.add(bi);
             }
+
         } catch(IOException ex) {
             ex.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -133,14 +135,12 @@ public class DataManager {
         try(FileInputStream fis = new FileInputStream("bookings.txt");
             ObjectInputStream ois = new ObjectInputStream(fis)) {
 
-            /*Booking b = null;
-            while((b = (Booking) ois.readObject()) != null) {
+            while (fis.available() > 0) {
+                Booking b = new Booking();
+                b.readExternal(ois);
                 Bookings.add(b);
-            }*/
-            Booking bookings = new Booking();
-            bookings.readExternal(ois);
-            Booking bookings2 = new Booking();
-            bookings2.readExternal(ois);
+            }
+
         } catch(IOException ex) {
             ex.printStackTrace();
         } catch (ClassNotFoundException e) {

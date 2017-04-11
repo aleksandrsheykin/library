@@ -27,22 +27,21 @@ public class Main {
         System.out.println("Proxy returned = " + catalog.contains(2));*/
 
         deserializeble = true;
-        createObjects = false;
-        serealiseble = false;
+        createObjects = serealiseble = false;
         //serealiseble = false;
 
         if (deserializeble) {
             for(Book book : DataManager.deserializeBook())
                 library.buyBook(book.getTitle(), book.getAuthor(), 1, book.getIsbn(), book.getYear());
 
-            /*for(Reader reader : DataManager.deserializeReader())
+            for(Reader reader : DataManager.deserializeReader())
                 library.addReader(reader.getFistname(), reader.getSecondname(), reader.getLastname(), reader.getPassportNumber());
 
-            for(BookInstance bookInstance: DataManager.deserializeBookInstance())
-                library.addBookInstance(bookInstance.getBook(), bookInstance.getNumber());
+            /*for(BookInstance bookInstance: DataManager.deserializeBookInstance())
+                library.addBookInstance(bookInstance.getBook(), bookInstance.getNumber());*/
 
             for(Booking booking: DataManager.deserializeBooking())
-                library.addBooking(booking.getBookInstance(), booking.getReader(), booking.getStartDate(), booking.getFinishDate());*/
+                library.addBooking(booking.getBookInstance(), booking.getReader(), booking.getStartDate(), booking.getFinishDate());
         }
 
         if (createObjects){
@@ -51,6 +50,7 @@ public class Main {
 
             library.buyBook("Intro to Java", "Pushkin", 3, "123123321sdf", 2017);
             library.buyBook("Oak green lukomorie", "Vasya Pupkin", 2, "1233321231das", 2016);
+            library.buyBook("Mick Jagger", "Rock-n-roll", 2, "23423", 2016);
 
             //library.takeBook("Jone", "Karlovich", "Konor", 12345, "Intro to Java");
             //library.takeBook("Sara", "Serheevna", "Konor", 54321, "Oak green lukomorie");

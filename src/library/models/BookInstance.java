@@ -1,5 +1,7 @@
 package library.models;
 
+import sun.text.normalizer.UTF16;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +16,15 @@ public class BookInstance implements Externalizable {
     private UUID number;
     private List<Reader> bookHistory;
     private static long serrialVersion = 3L;
-    private String name;
 
     public BookInstance(Book book, UUID number) {
         this.book = book;
         this.number = number;
-        this.name = "Aleksandr";
 
         bookHistory = new ArrayList<>(32);
+    }
+
+    public BookInstance() {
     }
 
     @Override
@@ -62,12 +65,16 @@ public class BookInstance implements Externalizable {
 
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeUTF(name);
+        out.writeObject(book);
+        out.writeObject(number);
+        out.writeObject(bookHistory);
     }
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        this.name = in.readUTF();
+        this.book = (Book) in.readObject();
+        this.number = (UUID) in.readObject();
+        this.bookHistory = (List<Reader>) in.readObject();
     }
 }
 

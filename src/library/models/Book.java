@@ -8,14 +8,13 @@ import java.lang.reflect.Parameter;
 /**
  * Created by admin on 05.04.2017.
  */
-public class Book implements Serializable{ //Externalizable {
+public class Book implements Externalizable {
 
     private String author;
     private String title;
     private int year;
     private String isbn;
     private static long serrialVersion = 3L;
-    private String name;
 
     public void print() {
         System.out.println(Book.class.getCanonicalName());
@@ -49,7 +48,6 @@ public class Book implements Serializable{ //Externalizable {
         this.title = title;
         this.year = year;
         this.isbn = isbn;
-        this.name = "Aleksandr";
     }
 
     public Book() {
@@ -112,27 +110,28 @@ public class Book implements Serializable{ //Externalizable {
         this.isbn = isbn;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    /*@Override
+    @Override
     public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeUTF(author);
+        /*out.writeUTF(author);
         out.writeUTF(title);
         out.writeInt(year);
-        out.writeUTF(isbn);
-        out.writeUTF(this.name);
+        out.writeUTF(isbn);*/
+        out.writeObject(author);
+        out.writeObject(title);
+        out.writeObject(year);
+        out.writeObject(isbn);
     }
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        this.author = (String) in.readUTF();
-        this.title = (String) in.readUTF();
-        this.year = (Integer) in.readInt();
-        this.isbn = (String) in.readUTF();
-        this.name = (String) in.readUTF();
-        //System.out.println(in.readUTF());
-    }*/
+        /*this.author = in.readUTF();
+        this.title = in.readUTF();
+        this.year = in.readInt();
+        this.isbn = in.readUTF();*/
+        this.author = (String) in.readObject();
+        this.title = (String) in.readObject();
+        this.year = (Integer) in.readObject();
+        this.isbn = (String) in.readObject();
+    }
 
 }

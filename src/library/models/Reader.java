@@ -11,14 +11,15 @@ public class Reader implements Externalizable {
     private String lastname;
     private long passportNumber;
     private static long serrialVersion = 3L;
-    private String name;
 
     public Reader(String fistname, String secondname, String lastname, long passportNumber) {
         this.fistname = fistname;
         this.secondname = secondname;
         this.lastname = lastname;
         this.passportNumber = passportNumber;
-        this.name = "Aleksandr";
+    }
+
+    public Reader() {
     }
 
     @Override
@@ -72,11 +73,17 @@ public class Reader implements Externalizable {
 
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeUTF(name);
+        out.writeObject(fistname);
+        out.writeObject(secondname);
+        out.writeObject(lastname);
+        out.writeObject(passportNumber);
     }
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        this.name = in.readUTF();
+        this.fistname = (String) in.readObject();
+        this.secondname = (String) in.readObject();
+        this.lastname = (String) in.readObject();
+        this.passportNumber = (Long) in.readObject();
     }
 }
