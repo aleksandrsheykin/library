@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration>
+
+    <appender name="CustomAppender" class="customLogger.CustomMailAppender">
+        <layout class="customLogger.CustomLogLayout">
+        </layout>
+    </appender>
+
+    <root>
+        <level value="DEBUG" />
+        <appender-ref ref="CustomAppender" />
+    </root>
+
+</log4j:configuration>

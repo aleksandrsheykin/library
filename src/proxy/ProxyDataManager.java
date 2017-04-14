@@ -1,5 +1,7 @@
 package proxy;
 
+import library.models.Book;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
@@ -11,9 +13,10 @@ public class ProxyDataManager implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         switch (method.getName()) {
-            case (""):
+            case ("readExternal"):
                 break;
         }
-        return null;
+        Book book = new Book("Mick Jagger", "Rock-n-roll", 2017, "23423");
+        return book;
     }
 }

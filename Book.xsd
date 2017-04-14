@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">
+    
+    <xs:element name="Book" type="bookType"/>
+
+    <xs:complexType name="bookType">
+		<xs:sequence>  
+			<xs:element name="author" type="xs:string" maxOccurs="128"/>
+			<xs:element name="title" type="xs:string" maxOccurs="128"/>
+			<xs:element name="year" type="xs:integer" maxOccurs="4"/>
+			<xs:element name="isbn" type="xs:string" maxOccurs="64"/>
+		</xs:sequence>
+    </xs:complexType>
+
+
+</xs:schema>

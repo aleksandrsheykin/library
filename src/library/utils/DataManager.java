@@ -67,12 +67,33 @@ public class DataManager {
         }
     }
 
-    public static Set<Book> deserializeBook() {
+    /*public static Set<Book> deserializeBook(BufferedReader bufferedReader) {
         Set<Book> books = new HashSet<>();
-        try(FileInputStream fis = new FileInputStream("books.txt");
-            ObjectInputStream ois = new ObjectInputStream(fis)) {
+        //InputStream inputStream = new BufferedInputStream(fileInputStream);
+        Book book = new Book();
+        bufferedReader.readLine();
+        try(ObjectInputStream ois = new ObjectInputStream() {
 
-            while (fis.available() > 0) {
+            while (inputStream.available() > 0) {
+                Book b = new Book();
+                b.readExternal(ois);
+                books.add(b);
+            }
+
+        } catch(IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            return books;
+        }
+    }*/
+
+    public static Set<Book> deserializeBook(FileInputStream fileInputStream) {
+        Set<Book> books = new HashSet<>();
+        try(ObjectInputStream ois = new ObjectInputStream(fileInputStream)) {
+
+            while (fileInputStream.available() > 0) {
                 Book b = new Book();
                 b.readExternal(ois);
                 books.add(b);

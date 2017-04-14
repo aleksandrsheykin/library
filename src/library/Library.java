@@ -3,6 +3,9 @@ package library.models;
 import com.sun.org.apache.bcel.internal.classfile.SourceFile;
 import com.sun.org.apache.regexp.internal.RE;
 import library.models.*;
+import org.apache.log4j.Logger;
+import org.apache.log4j.xml.DOMConfigurator;
+import org.w3c.dom.DOMConfiguration;
 
 import java.util.*;
 
@@ -11,7 +14,6 @@ import java.util.*;
  */
 
 public class Library {
-
     private Set<Book> catalog;
     private Set<BookInstance> store;
     private Set<Reader> readers;
