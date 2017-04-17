@@ -112,10 +112,6 @@ public class Book implements Externalizable {
 
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
-        /*out.writeUTF(author);
-        out.writeUTF(title);
-        out.writeInt(year);
-        out.writeUTF(isbn);*/
         out.writeObject(author);
         out.writeObject(title);
         out.writeObject(year);
@@ -124,10 +120,6 @@ public class Book implements Externalizable {
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        /*this.author = in.readUTF();
-        this.title = in.readUTF();
-        this.year = in.readInt();
-        this.isbn = in.readUTF();*/
         this.author = (String) in.readObject();
         this.title = (String) in.readObject();
         this.year = (Integer) in.readObject();

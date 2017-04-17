@@ -47,7 +47,7 @@ public class DataBaseManager {
             PreparedStatement preparedStatement =
                     connection.prepareStatement("INSERT INTO book(\n" +
                             " book_author, book_title, book_isbn, book_year)\n" +
-                            " VALUES (?,?, ?, ?)");
+                            " VALUES (?, ?, ?, ?)");
             preparedStatement.setString(1, "Mick Jagger");
             preparedStatement.setString(2, "Rock-n-roll");
             preparedStatement.setString(3, "234-234-234");

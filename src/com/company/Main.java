@@ -6,6 +6,8 @@ import library.models.*;
 import library.models.Library;
 import library.models.Reader;
 import library.utils.DataManager;
+import library.utils.JarClassLoader;
+import library.utils.MyClassLoader;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.apache.log4j.xml.DOMConfigurator;
@@ -13,6 +15,7 @@ import proxy.MySet;
 import proxy.ProxyCollection;
 
 import java.io.*;
+import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Set;
 
@@ -23,19 +26,52 @@ public class Main {
     }
     private static Logger logger = Logger.getLogger(Library.class);
 
+    /**
+     * <p>Dynamic load class</p>
+     * http://kalanir.blogspot.ru/2010/01/how-to-write-custom-class-loader-to.html
+     * http://tutorials.jenkov.com/java-reflection/dynamic-class-loading-reloading.html
+     *
+     * <p></p>
+     * @param args
+     */
     public static void main(String[] args) {
         Library library = new Library();
         boolean deserializeble, serealiseble, createObjects, serializeToXml, proxy, reflection, dbconnection = false;
-        boolean logging = false;
+        boolean logging, classDynamicLoad = false;
+
+        Object objForLoadClass = new Object();
+        ClassLoader classLoader = Main.class.getClassLoader();
 
         deserializeble = false;
-        createObjects = true;
+        createObjects = false;
         serealiseble = false;
         serializeToXml = false;
         reflection = false;
         proxy = false;
         dbconnection = false;
         logging = false;
+        classDynamicLoad = true;
+
+        if (classDynamicLoad) {
+            JarClassLoader jarClassLoader = new JarClassLoader();
+            Class findClass = jarClassLoader.findClass("library.models.ReaderTicket");
+            if (findClass == null) {
+                try {
+                    Class loadClass = jarClassLoader.loadClass("ReaderTicket");
+                    System.out.println(loadClass.getName());
+                    System.out.println(loadClass.getMethods().length);
+                    try {
+                        Method myMethod = loadClass.getMethod("HelloMsg");
+                        System.out.println(myMethod.getName());
+                    } catch (NoSuchMethodException e) {
+                        e.printStackTrace();
+                    }
+
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
         if (logging) {
             logger.warn("it log message!");
